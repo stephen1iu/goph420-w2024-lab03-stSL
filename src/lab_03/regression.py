@@ -28,7 +28,7 @@ def multi_regress(y, Z):
     a = np.dot(np.linalg.inv(Z_t @ Z), (Z_t @ y)) 
 
     y_aprx = Z @ a
-    e = y - y_aprx
+    e = y - y_aprx #deviation from mean
 
     ssr = np.dot(np.transpose(e), e)
     avg_y = np.full_like(y, np.mean(y))
