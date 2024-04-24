@@ -8,6 +8,8 @@ def main():
     time = data[:,0]
     plt.figure()
     plt.plot(time, mag)
+    plt.xlabel("Time (hrs)")
+    plt.ylabel("Event Magnitude (M)")
     plt.savefig("../figures/raw_data.png")
 
     day_cuts = [3928, 5684, 6974, 9536]
@@ -18,21 +20,25 @@ def main():
     mag4 = mag[day_cuts[2]:day_cuts[3]]
     mag5 = mag[day_cuts[3]:]
 
-    magnitudes = [mag1, mag2, mag3, mag4, mag5]
-
     plt.figure()
     fig, ax = plt.subplots(5, figsize = (20, 20))
     ax[0].plot(time[:day_cuts[0]], mag1, label = "Day 1")
     ax[1].plot(time[day_cuts[0]:day_cuts[1]], mag2, label = "Day 2")
     ax[2].plot(time[day_cuts[1]:day_cuts[2]], mag3, label = "Day 3")
     ax[3].plot(time[day_cuts[2]:day_cuts[3]], mag4, label = "Day 4")
-    ax[4].plot(time[day_cuts[3]:], mag5, label = "Day 5")    
+    ax[4].plot(time[day_cuts[3]:], mag5, label = "Day 5")
+    ax[2].set_xlabel("Time (hrs)")
+    ax[4].set_ylabel("Event Magnitude (M)")
+    for a in ax:
+        a.legend()
     plt.savefig("../figures/daily_data.png")
 
     cutoffs = [34, 46, 72, 96]
 
     plt.figure(figsize=(20,20))
     plt.plot(time, mag, 'or')
+    plt.xlabel("Time (hrs)")
+    plt.ylabel("Event Magnitude (M)")
     plt.vlines(cutoffs, -2, 2, colors="k")
     plt.savefig("../figures/vline_data.png")
 
